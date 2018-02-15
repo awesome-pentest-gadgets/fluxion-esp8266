@@ -1,0 +1,29 @@
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+max_line_length=120
+indent_style = tabs
+indent_size=2
+charset = utf-8
+trim_trailing_whitespace = true
+
+[*.sh]
+indent_style = tabs
+indent_size = 2
+charset = utf-8
+trim_trailing_whitespace = true
+
+[*.py]
+indent_size=2
+
+[*.cpp]
+indent_style = tabs
+indent_size=2
+charset = utf-8
+trim_trailing_whitespace = true
+
+
+[*.md]
+trim_trailing_whitespace = false
