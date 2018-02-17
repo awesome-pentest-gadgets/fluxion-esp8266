@@ -8,8 +8,8 @@ APScan::APScan()
 bool APScan::start()
 {
 	if ( debug ) {
-		Serial.println ( "starting AP scan..." );
-		Serial.println ( "MAC - Ch - RSSI - Encrypt. - SSID - Hidden" );  // - Vendor");
+		Serial.println ( "[+] Starting AP scan..." );
+		Serial.println ( "MAC - Ch - RSSI - Encrypt. - SSID - Hidden - Vendor");
 	}
 	
 	aps._clear ();
@@ -21,7 +21,7 @@ bool APScan::start()
 	}
 	
 	results = WiFi.scanNetworks ( false,
-			settings.apScanHidden );       // lets scanNetworks return hidden APs. (async = false & show_hidden = true)
+			settings.apScanHidden );       
 			
 	if ( results > maxAPScanResults ) {
 		results = maxAPScanResults;
@@ -96,15 +96,14 @@ String APScan::getEncryption ( int code )
 }
 
 String APScan::getAPName ( int num )
-{
-	//if (isHidden(num)) return "* Hidden SSID *";
-	return names[num];
-}
+{	return names[num]; }
 
 String APScan::getAPEncryption ( int num )
 { return getEncryption ( encryption[num] ); }
 
-//String APScan::getAPVendor(int num){ return vendors[num]; }
+String APScan::getAPVendor(int num)
+{ return vendors[num]; }
+
 String APScan::getAPMac ( int num )
 { return aps._get ( num ).toString (); }
 
