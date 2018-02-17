@@ -40,7 +40,7 @@
 //#define USE_LED16
 
 /*
-  enable captive portal (redirects all pages to 192.168.4.1) -
+  enable captive portal (redirects all pages to 192.168.99.1) -
   most devices flood the ESP8266 with requests
 */
 
@@ -52,9 +52,8 @@ extern "C" {
 #ifdef USE_CAPTIVE_PORTAL
 const byte              DNS_PORT =
 	53;          // Capture DNS requests on port 53
-IPAddress               apIP ( 192, 168, 99,
-	1 ); // IP Address for Wi-PWN (Changing this will cause unwanted side effects - app malfunctioning)
-DNSServer               dnsServer;              // Create the DNS object
+IPAddress               apIP ( 192, 168, 99,1 );
+DNSServer               dnsServer;            
 #endif
 const byte              web_port = 80;
 ESP8266WebServer        server ( web_port );
@@ -318,7 +317,7 @@ void loadDarkModeForce()
 void loadRedirectHTML()
 {
 	server.send ( 302, "text/html",
-		"<meta content='0; url=http://192.168.4.1'http-equiv='refresh'>" );
+		"<meta content='0; url=http://192.168.99.1'http-equiv='refresh'>" );
 }
 
 void startWiFi ( bool start )
