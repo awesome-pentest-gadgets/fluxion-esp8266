@@ -1,6 +1,3 @@
-/*$6*/
-
-
 #include "Attack.h"
 
 Attack::Attack()
