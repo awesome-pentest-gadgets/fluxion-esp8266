@@ -1,6 +1,3 @@
-/*$6*/
-
-
 #ifndef APScan_h
 #define APScan_h
 
@@ -26,37 +23,39 @@ class                   APScan {
 	public:
 		APScan();
 		
-		bool    start();
 		void    sort();
-		String  getResultsJSON();
 		void    select ( int num );
 		void    sendResults();
 		
+  	String  getResultsJSON();
 		String  getAPName ( int num );
-		String  getAPEncryption ( int num );
-		
-		//String getAPVendor(int num);
+		String  getAPEncryption ( int num );		
+		String getAPVendor(int num);
 		String  getAPMac ( int num );
+  	String  sanitizeJson ( String input );
+  
+  	bool    isSelected ( int num );
 		bool    isHidden ( int num );
+  	bool    start();
+  
 		int     getAPRSSI ( int num );
 		int     getAPChannel ( int num );
-		
 		int     getFirstTarget();
-		bool    isSelected ( int num );
-		String  sanitizeJson ( String input );
-		
 		int     results = 0;
 		int     selectedSum;
+  
 		MacList aps;
+  
 	private:
 		int     channels[maxAPScanResults];
 		int     rssi[maxAPScanResults];
-		char    names[maxAPScanResults][33];
-		int     encryption[maxAPScanResults];
+    int     encryption[maxAPScanResults];
+	
+    char    names[maxAPScanResults][33];
+  
 		bool    hidden[maxAPScanResults];
+  	bool    selected[maxAPScanResults];
 		
 		String  getEncryption ( int code );
-		
-		bool    selected[maxAPScanResults];
 };
 #endif
