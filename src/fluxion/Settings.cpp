@@ -1,6 +1,3 @@
-/*$6*/
-
-
 #include "Settings.h"
 
 Settings::Settings()
@@ -9,16 +6,14 @@ Settings::Settings()
 	defaultMacAP.set ( WiFi.softAPmacAddress ( tempMAC ) );
 	
 	if ( !defaultMacAP.valid () )
-		{
 			defaultMacAP.randomize ();
-		}
 }
 
 void Settings::syncMacInterface()
 {
 	if ( debug )
 		{
-			Serial.println ( "Trying to sync the MAC addr with settings" );
+			Serial.println ( "[+] Trying to sync the MAC addr with settings" );
 		}
 		
 	if ( isSettingsLoaded )
@@ -31,7 +26,7 @@ void Settings::syncMacInterface()
 					wifi_set_macaddr ( SOFTAP_IF, macToSync._get () );
 					
 					if ( debug )
-						{ Serial.println ( "Synced with a random mac addr : " + macToSync.toString () ); }
+						{ Serial.println ( "[+] Synced with a random mac addr : " + macToSync.toString () ); }
 				}
 				
 			else
@@ -41,13 +36,13 @@ void Settings::syncMacInterface()
 						wifi_set_macaddr ( SOFTAP_IF, macToSync._get () );
 						
 						if ( debug )
-							{ Serial.println ( "Synced with saved mac addr : " + macToSync.toString () ); }
+							{ Serial.println ( "[+] Synced with saved mac addr : " + macToSync.toString () ); }
 					}
 					
 				else
 					{
 						if ( debug )
-							{ Serial.println ( "Could not sync because of invalid settings !" ); }
+							{ Serial.println ( "[+] Could not sync because of invalid settings !" ); }
 					}
 		}
 		
@@ -85,7 +80,7 @@ void Settings::load()
 		EEPROM.read ( checkNumAdr ) != checkNum )
 		{
 			Serial.println ( "" );
-			Serial.println ( "ERROR: Checknum mismatch! Current checknum=" +
+			Serial.println ( "[E] ERROR: Checknum mismatch! Current checknum=" +
 				( String ) checkNum + "; stored checknum=" +
 				( String ) EEPROM.read ( checkNumAdr ) );
 			Serial.println ( "" );
@@ -96,7 +91,7 @@ void Settings::load()
 	else
 		{
 			Serial.println ( "" );
-			Serial.println ( "Current checknum=" + ( String ) checkNum +
+			Serial.println ( "[+] Current checknum=" + ( String ) checkNum +
 				"; stored checknum=" +
 				( String ) EEPROM.read ( checkNumAdr ) );
 			Serial.println ( "" );
@@ -146,7 +141,7 @@ void Settings::load()
 		{ apChannel = 1; }
 		
 	for ( int i = 0; i < 6; i++ )
-		{ macAP.setAt ( ( uint8_t ) EEPROM.read ( macAPAdr + i ), i ); }
+		 macAP.setAt ( ( uint8_t ) EEPROM.read ( macAPAdr + i ), i ); 
 		
 	if ( !macAP.valid () )
 		{
@@ -229,7 +224,7 @@ void Settings::reset()
 	
 	if ( debug )
 		{
-			Serial.println ( "Reset complete!" );
+			Serial.println ( "[I] Reset complete!" );
 		}
 		
 	save ();
@@ -322,7 +317,7 @@ void Settings::save()
 	if ( debug )
 		{
 			info ();
-			Serial.println ( "settings saved!" );
+			Serial.println ( "[I] Settings saved!" );
 		}
 }
 
@@ -414,7 +409,7 @@ void Settings::send()
 {
 	if ( debug )
 		{
-			Serial.println ( "getting settings json" );
+			Serial.println ( "[I] Getting settings json" );
 		}
 		
 	sendHeader ( 200, "text/json", getSize () );
@@ -488,7 +483,7 @@ void Settings::sendSysInfo()
 {
 	if ( debug )
 		{
-			Serial.println ( "getting sysinfo json" );
+			Serial.println ( "[I] Getting sysinfo json" );
 		}
 		
 	sendHeader ( 200, "text/json", getSysInfoSize () );
@@ -513,6 +508,6 @@ void Settings::sendSysInfo()
 	
 	if ( debug )
 		{
-			Serial.println ( "\ndone" );
+			Serial.println ( "\n[+] Done" );
 		}
 }
