@@ -6,17 +6,7 @@ Currently the fake ap does not work. Until now this is a wip project.
 
 If you need quick help, fluxion is also avaible on gitter. You can talk with us [here](https://gitter.im/FluxionNetwork/Lobby)
 ## Installation
-Read [this](https://github.com/FluxionNetwork/fluxion/wiki/Generate-ssh-keys) before you follow the following steps.
-<br>
-**Download the latest revision**
-```
-git clone --recursive git@github.com:FluxionNetwork/fluxion-esp8266.git 
-```
-**Switch to tool's directory**
-```
-cd fluxion-esp8266
-```
-**Flash the .bin file
+Detailed instruction are included in wiki, please check it out.
 
 ## :scroll: Changelog
 Fluxion gets weekly updates with new features, improvements, and bugfixes.
@@ -47,24 +37,9 @@ It is made for the esp8266. The only thing which is required is that you have th
 
 For development I use vim and tmux. Here are my [dotfiles](https://github.com/deltaxflux/takumi/)
 ## :octocat: Credits
-1. l3op - contributor
-2. dlinkproto - contributor
-3. vk496 - developer of linset
-4. Derv82 - @Wifite/2
-5. Princeofguilty - @webpages and @buteforce
-6. Photos for wiki @http://www.kalitutorials.net
-7. Ons Ali @wallpaper
-8. PappleTec @sites
-9. MPX4132 - Fluxion V3
+I use parts from 2 main projects. Thanks to [spacehuhn](https://github.com/spacehuhn/esp8266_deauther) and [samdenty99](https://github.com/samdenty99/Wi-PWN) work. They did a great job there.
 
 ## Disclaimer
 * Authors do not own the logos under the `/attacks/Captive Portal/sites/` directory. Copyright Disclaimer Under Section 107 of the Copyright Act 1976, allowance is made for "fair use" for purposes such as criticism, comment, news reporting, teaching, scholarship, and research.
 
 * The usage of Fluxion to attack infrastructure without prior mutual consent could be considered an illegal activity, and is highly discouraged by its authors and developers. It is the end users responsibility to obey all applicable local, state and federal laws. Authors assume no liability and are not responsible for any misuse or damage caused by this program.
-
-## Note
-* :heavy_exclamation_mark: Beware of sites pretending to be related with the Fluxion Project. These may be delivering malware.
-
-* Fluxion **DOES NOT WORK** on Linux Subsystem For Windows 10, because the subsystem doesn't allow access to network interfaces. Any Issue regarding the same would be **Closed Immediately**
-
-
