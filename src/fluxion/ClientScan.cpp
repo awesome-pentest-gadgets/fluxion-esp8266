@@ -1,7 +1,7 @@
 /*$6*/
 
 
-#include "ClientScan.h"
+#include "includes/ClientScan.hpp"
 
 ClientScan::ClientScan()
 {

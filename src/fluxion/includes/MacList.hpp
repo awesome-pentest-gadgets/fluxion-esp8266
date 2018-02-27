@@ -5,7 +5,7 @@
 #define MacList_h
 #define listLen 64
 
-#include "Mac.h"
+#include "Mac.hpp"
 
 class MacList {
 	public:

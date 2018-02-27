@@ -5,8 +5,8 @@
 #define SSIDList_h
 
 #include <EEPROM.h>
-#include "Mac.h"
-#include "MacList.h"
+#include "Mac.hpp"
+#include "MacList.hpp"
 
 #define listAdr         2048
 #define lenAdr          2047

@@ -5,8 +5,8 @@
 #define NameList_h
 
 #include <EEPROM.h>
-#include "Mac.h"
-#include "MacList.h"
+#include "Mac.hpp"
+#include "MacList.hpp"
 
 #define romAdr      0
 #define maxSize     1024

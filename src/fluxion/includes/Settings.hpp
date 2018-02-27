@@ -7,13 +7,10 @@
 #include <EEPROM.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
-#include "Mac.h"
-#include "MacList.h"
-#include "NameList.h"
+#include "Mac.hpp"
+#include "MacList.hpp"
+#include "NameList.hpp"
 
-extern "C" {
-#include "user_interface.h"
-}
 extern void       sendBuffer();
 extern void       sendToBuffer ( String str );
 extern void       sendHeader ( int code, String type, size_t _size );

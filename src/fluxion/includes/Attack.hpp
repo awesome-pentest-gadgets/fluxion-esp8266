@@ -11,12 +11,12 @@
 extern "C" {
 #include "user_interface.h"
 }
-#include "Mac.h"
-#include "MacList.h"
-#include "APScan.h"
-#include "ClientScan.h"
-#include "Settings.h"
-#include "SSIDList.h"
+#include "Mac.hpp"
+#include "MacList.hpp"
+#include "APScan.hpp"
+#include "ClientScan.hpp"
+#include "Settings.hpp"
+#include "SSIDList.hpp"
 
 #define attacksNum  3
 #define macListLen  64

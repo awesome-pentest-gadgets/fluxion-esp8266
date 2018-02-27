@@ -1,7 +1,4 @@
-/*$6*/
-
-
-#include "DNSServer.h"
+#include "includes/DNSServer.hpp"
 #include <lwip/def.h>
 #include <Arduino.h>
 

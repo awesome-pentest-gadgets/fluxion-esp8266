@@ -7,10 +7,10 @@
 #define maxClientScanResults  40
 
 #include <ESP8266WiFi.h>
-#include "Mac.h"
-#include "MacList.h"
-#include "APScan.h"
-#include "NameList.h"
+#include "Mac.hpp"
+#include "MacList.hpp"
+#include "APScan.hpp"
+#include "NameList.hpp"
 
 extern "C" {
 #include "user_interface.h"

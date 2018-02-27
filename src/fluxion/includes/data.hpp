@@ -3,7 +3,7 @@
 
 #ifndef data_h
 #define data_h
-#include "Settings.h"
+#include "Settings.hpp"
 
 extern Settings settings;
 

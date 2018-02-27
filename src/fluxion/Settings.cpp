@@ -1,5 +1,8 @@
-#include "Settings.h"
+#include "includes/Settings.hpp"
 
+extern "C" {
+  #include "user_interface.h"
+}
 Settings::Settings()
 {
 	uint8_t tempMAC[6];
@@ -204,7 +207,7 @@ void Settings::reset()
 	attackPacketRate = 10;
 	clientScanTime = 15;
 	useLed = true;
-	channelHop = false;
+	channelHop = true;
 	multiAPs = true;
 	multiAttacks = true;
 	macInterval = 4;

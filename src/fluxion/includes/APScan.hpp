@@ -1,12 +1,12 @@
 #ifndef APScan_h
 #define APScan_h
 
-#define maxAPScanResults  80
+#define maxAPScanResults  30
 
 #include <ESP8266WiFi.h>
-#include "Mac.h"
-#include "MacList.h"
-#include "Settings.h"
+#include "Mac.hpp"
+#include "MacList.hpp"
+#include "Settings.hpp"
 #include <ESP8266WebServer.h>
 
 extern String           data_getVendor ( uint8_t first, uint8_t second,
@@ -30,7 +30,6 @@ class                   APScan {
   	String  getResultsJSON();
 		String  getAPName ( int num );
 		String  getAPEncryption ( int num );		
-		String getAPVendor(int num);
 		String  getAPMac ( int num );
   	String  sanitizeJson ( String input );
   
@@ -49,12 +48,11 @@ class                   APScan {
 	private:
 		int     channels[maxAPScanResults];
 		int     rssi[maxAPScanResults];
-    int     encryption[maxAPScanResults];
-	
-    char    names[maxAPScanResults][33];
+		int     encryption[maxAPScanResults];
+		char    names[maxAPScanResults][33];
   
 		bool    hidden[maxAPScanResults];
-  	bool    selected[maxAPScanResults];
+		bool    selected[maxAPScanResults];
 		
 		String  getEncryption ( int code );
 };
